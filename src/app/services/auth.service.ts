@@ -5,7 +5,7 @@ import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  API = 'http://127.0.0.1:8080';
+  API = 'https://focussprint.onrender.com';
 
   constructor(
     private http: HttpClient,
