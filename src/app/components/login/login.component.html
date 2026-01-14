@@ -1,0 +1,43 @@
+<div class="d-flex justify-content-center align-items-center" style="min-height: calc(90vh - 56px);">
+    <div class="col-md-7 shadow p-5 rounded bg-white">
+        <h4 class="mb-3 fw-bold text-center">Login</h4>
+
+        <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+            <!-- User Name -->
+            <input class="form-control mb-3 p-3"
+                    placeholder="Username"
+                    [(ngModel)]="username"
+                    name="username"
+                    #usernameCtrl="ngModel"
+                    required />
+            <div class="text-danger" *ngIf="usernameCtrl.invalid && usernameCtrl.touched">
+                <small>Username is required.</small>
+            </div>
+            
+            <!-- Password -->
+            <input class="form-control mb-3 p-3"
+                    type="password"
+                    placeholder="Password"
+                    [(ngModel)]="password"
+                    name="password"
+                    #pwdCtrl="ngModel"
+                    required
+                    minlength="8"
+                    pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9])\S+$" />
+            <div class="text-danger" *ngIf="pwdCtrl.invalid && pwdCtrl.touched">
+                <small *ngIf="pwdCtrl.errors?.['required']">Password is required.</small>
+                <small *ngIf="pwdCtrl.errors?.['minlength'] || pwdCtrl.errors?.['pattern']">
+                Invalid Password.
+                </small>
+            </div>
+
+            <button class="btn btn-success fw-bold w-100 p-3" [disabled]="loginForm.invalid">Login</button>
+        </form>
+        
+        <!-- Register Nav -->
+        <div class="text-center mt-3 p-3">
+            <span>Don't have an account?</span>
+            <a routerLink="/register" class="ms-1 text-decoration-none fw-semibold text-success">Register</a>
+        </div>
+    </div>
+</div>

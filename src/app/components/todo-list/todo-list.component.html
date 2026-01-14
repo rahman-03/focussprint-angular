@@ -1,0 +1,36 @@
+<div class="d-flex justify-content-between mb-3">
+    <h4>Todos</h4>
+    <a class="btn btn-success" routerLink="/todos/add">+ Add</a>
+</div>
+<div class="list-group">
+    <!-- Task List -->
+    @for (t of todos; track t.id) {
+        <a
+        class="list-group-item list-group-item-action d-flex justify-content-between align-items-center py-3"
+        [routerLink]="['/todos', t.id]"
+        >
+        <span class="flex-grow-1">
+            {{ t.title }}
+        </span>
+
+        @if (t.complete) {
+            <span class="badge bg-success me-2">Completed</span>
+        }
+
+        <span class="badge" [ngClass]="t.complete ? 'bg-success' : 'bg-secondary'">
+            P{{ t.priority }}
+        </span>
+        </a>
+    }
+    @empty {
+        <a
+        class="list-group-item list-group-item-action d-flex justify-content-between align-items-center py-3"
+        [routerLink]="['/todos/add']"
+        >
+        <span class="flex-grow-1">
+            No Tasks Added
+        </span>
+        </a>
+    }
+
+</div>

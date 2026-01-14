@@ -1,0 +1,100 @@
+<div class="d-flex justify-content-center align-items-center" style="min-height: calc(90vh - 56px);">
+    <div class="col-md-7 shadow p-5 rounded bg-white">
+        <h4 class="mb-3 text-center">Register</h4>
+
+        <form #registerForm="ngForm" (ngSubmit)="register()" novalidate>
+
+            <!-- Email -->
+            <input class="form-control mb-2"
+                    placeholder="Email"
+                    [(ngModel)]="email"
+                    name="email"
+                    #emailCtrl="ngModel"
+                    required
+                    email />
+            <div class="text-danger" *ngIf="emailCtrl.invalid && emailCtrl.touched">
+                <small *ngIf="emailCtrl.errors?.['required']">Email is required.</small>
+                <small *ngIf="emailCtrl.errors?.['email']">Enter a valid email.</small>
+            </div>
+
+            <!-- Username -->
+            <input class="form-control mb-2"
+                    placeholder="Username"
+                    [(ngModel)]="username"
+                    name="username"
+                    #usernameCtrl="ngModel"
+                    required />
+            <div class="text-danger" *ngIf="usernameCtrl.invalid && usernameCtrl.touched">
+                <small>Username is required.</small>
+            </div>
+
+            <!-- First Name -->
+            <input class="form-control mb-2"
+                    placeholder="First Name"
+                    [(ngModel)]="firstname"
+                    name="firstname" />
+
+            <!-- Last Name -->
+            <input class="form-control mb-2"
+                    placeholder="Last Name"
+                    [(ngModel)]="lastname"
+                    name="lastname" />
+
+            <!-- Phone -->
+            <input class="form-control mb-2"
+                    placeholder="Phone Number"
+                    [(ngModel)]="phone_no"
+                    name="phone_no"
+                    #phnCtrl="ngModel"
+                    required
+                    minlength="10"
+                    maxlength="10" />
+                <div class="text-danger" *ngIf="phnCtrl.invalid && phnCtrl.touched">
+                <small *ngIf="phnCtrl.errors?.['required']">Phone Number is required.</small>
+                <small *ngIf="phnCtrl.errors?.['minlength'] || phnCtrl.errors?.['maxlength']">Enter Valid Phone Number</small>
+            </div>
+
+            <!-- Password -->
+            <input class="form-control mb-2"
+                    type="password"
+                    placeholder="Password"
+                    [(ngModel)]="password"
+                    name="password"
+                    #pwdCtrl="ngModel"
+                    required
+                    minlength="8"
+                    pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9])\S+$" />
+            <div class="text-danger" *ngIf="pwdCtrl.invalid && pwdCtrl.touched">
+                <small *ngIf="pwdCtrl.errors?.['required']">Password is required.</small>
+                <small *ngIf="pwdCtrl.errors?.['minlength']">At least 8 characters.</small>
+                <small *ngIf="pwdCtrl.errors?.['pattern']">
+                Must include uppercase, lowercase, number, special character, and no spaces.
+                </small>
+            </div>
+
+            <!-- Confirm Password -->
+            <input class="form-control mb-3"
+                    type="password"
+                    placeholder="Confirm Password"
+                    [(ngModel)]="password2"
+                    name="password2"
+                    #pwd2Ctrl="ngModel"
+                    required />
+            <div class="text-danger" *ngIf="password && password2 && password !== password2">
+                <small>Passwords do not match.</small>
+            </div>
+
+            <!-- Button -->
+            <button class="btn btn-success w-100" [disabled]="registerForm.invalid || password !== password2">
+                Register
+            </button>
+
+        </form>
+
+        <!-- Login Nav -->
+        <div class="text-center mt-3">
+        <span>Have an account?</span>
+        <a routerLink="/login" class="ms-1 text-decoration-none fw-semibold text-success">Login</a>
+        </div>
+    </div>
+</div>

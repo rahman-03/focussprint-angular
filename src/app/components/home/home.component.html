@@ -1,0 +1,87 @@
+<!-- HERO SECTION -->
+<div class="bg-dark text-light py-5">
+  <div class="container text-center">
+
+    <h1 class="display-5 fw-bold mb-3">
+      Organize Your Life ✨
+    </h1>
+
+    <p class="lead mb-4">
+      Plan your tasks. Stay focused. Achieve more every day.
+    </p>
+
+    <div class="d-flex justify-content-center gap-3">
+      <a routerLink="/todos" class="btn btn-success btn-lg">
+        View My Todos
+      </a>
+      <a routerLink="/todos/add" class="btn btn-outline-light btn-lg">
+        Add New Todo
+      </a>
+    </div>
+
+  </div>
+</div>
+
+<!-- QUOTE SECTION -->
+<div class="container mt-5">
+  <div class="card shadow-lg border-0">
+    <div class="card-body text-center p-5">
+
+      <blockquote class="blockquote mb-4">
+        <p class="fs-4 fst-italic">
+          “{{ quotes[currentQuoteIndex].text }}”
+        </p>
+      </blockquote>
+
+      <footer class="blockquote-footer">
+        {{ quotes[currentQuoteIndex].author }}
+      </footer>
+
+    </div>
+  </div>
+</div>
+
+<!-- FEATURES SECTION -->
+<div class="container mt-5">
+  <div class="row text-center">
+
+    <div class="col-md-4 mb-4">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">🧠 Stay Focused</h5>
+          <p class="card-text">
+            Keep all your tasks organized in one place.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">⏱️ Manage Time</h5>
+          <p class="card-text">
+            Prioritize what matters and avoid distractions.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">🏆 Achieve Goals</h5>
+          <p class="card-text">
+            Turn your daily actions into long-term success.
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="text-center text-muted mt-5 mb-3">
+  Built with ❤️ using Angular & FastAPI
+</footer>
