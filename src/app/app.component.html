@@ -1,4 +1,4 @@
-<app-navbar></app-navbar>
+<app-navbar *ngIf="ready$ | async"></app-navbar>
 
 <div class="container mt-4">
   <app-loader *ngIf="!(ready$ | async)"></app-loader>
