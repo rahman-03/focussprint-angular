@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { TodoService } from '../../services/todo.service';
+import { TodoService } from '../../../services/todo.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -23,7 +23,7 @@ export class AddTodoComponent {
   addTodo() {
     const payload = {
       title: this.title,
-      description: this.description,
+      description: this.description || "",
       priority: this.priority,
       complete: false
     };

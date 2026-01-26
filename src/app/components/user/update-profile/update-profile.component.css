@@ -1,0 +1,40 @@
+/* Card container */
+.soft-card {
+  width: 460px;
+  border-radius: 14px;
+  border: none;
+  background-color: #fdfdfd;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+/* Labels */
+.form-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #6b7280;
+}
+
+/* Inputs */
+.form-control {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+}
+
+.form-control:focus {
+  border-color: #9ca3af;
+  box-shadow: none;
+}
+
+/* Muted primary button */
+.btn-muted {
+  background-color: #374151;
+  color: #f9fafb;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+}
+
+.btn-muted:hover {
+  background-color: #1f2933;
+}

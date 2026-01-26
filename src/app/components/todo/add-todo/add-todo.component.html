@@ -1,10 +1,9 @@
-<div class="d-flex justify-content-center align-items-center bg-light py-5">
-    <div class="card shadow-lg p-4 rounded col-md-6">
-        <h4 class="mb-3 text-center fw-bold">Add Todo</h4>
-
-        <form (ngSubmit)="addTodo()">
+<div class="d-flex justify-content-center mt-5">
+    <div class="card soft-card p-4">
+        <h4 class="text-center fw-bold mb-4">Add Todo</h4>
+        <form #addTodoForm="ngForm" (ngSubmit)="addTodo()">
             <!-- Task Title -->
-            <div class="mb-3  p-2">
+            <div class="mb-3">
                 <label for="title" class="form-label">Title <span class="text-danger">*</span></label>
                 <input
                 id="title"
@@ -17,20 +16,21 @@
             </div>
 
             <!-- Task Description -->
-            <div class="mb-3  p-2">
-                <label for="description" class="form-label">Description</label>
+            <div class="mb-3">
+                <label for="description" class="form-label">Description <span class="text-danger">*</span></label>
                 <textarea
                 id="description"
                 class="form-control"
                 [(ngModel)]="description"
                 name="description"
                 rows="3"
-                placeholder="Add some details (optional)"
+                placeholder="Add some details"
+                required
                 ></textarea>
             </div>
 
             <!-- Task Priority -->
-            <div class="mb-4  p-2">
+            <div class="mb-4">
                 <label for="priority" class="form-label">Priority</label>
                 <select
                 id="priority"
@@ -48,7 +48,7 @@
             </div>
 
             <!-- Button -->
-            <button class="btn btn-success w-100 fw-bold  p-2" type="submit">
+            <button class="btn btn-soft w-100 fw-bold" type="submit" [disabled]="addTodoForm.invalid">
                 Save Todo
             </button>
         </form>

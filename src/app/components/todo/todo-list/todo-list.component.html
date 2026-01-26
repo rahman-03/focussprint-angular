@@ -1,0 +1,48 @@
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h4 class="mb-0">Todos</h4>
+
+  <div class="d-flex gap-2">
+    <select class="form-select form-select-sm w-auto" #sortSelect
+            (change)="sortTodos(sortSelect.value)">
+      <option value="pending">Pending first</option>
+      <option value="title">Title (A → Z)</option>
+      <option value="completed">Completed first</option>
+      <option value="priority-desc">Priority (High → Low)</option>
+      <option value="priority-asc">Priority (Low → High)</option>
+    </select>
+
+    <a class="btn btn-dark btn-sm" routerLink="/todos/add">+ Add</a>
+  </div>
+</div>
+<div class="list-group">
+    <!-- Task List -->
+    @for (t of todos; track t.id) {
+        <a
+        class="list-group-item list-group-item-action d-flex justify-content-between align-items-center py-3"
+        [routerLink]="['/todos', t.id]"
+        >
+        <span class="flex-grow-1">
+            {{ t.title }}
+        </span>
+
+        @if (t.complete) {
+            <span class="badge bg-secondary me-2">Completed</span>
+        }
+
+        <span class="badge" [ngClass]="t.complete ? 'bg-secondary' : 'bg-dark'">
+            P{{ t.priority }}
+        </span>
+        </a>
+    }
+    @empty {
+        <a
+        class="list-group-item list-group-item-action d-flex justify-content-between align-items-center py-3"
+        [routerLink]="['/todos/add']"
+        >
+        <span class="flex-grow-1">
+            No Tasks Added
+        </span>
+        </a>
+    }
+
+</div>

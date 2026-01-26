@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { TodoService } from '../../services/todo.service';
+import { TodoService } from '../../../services/todo.service';
 
 @Component({
   selector: 'app-edit-todo',
