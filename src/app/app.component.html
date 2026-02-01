@@ -1,6 +1,9 @@
-<app-navbar *ngIf="ready$ | async"></app-navbar>
+@if (loader.loading$ | async) {
+  <app-loader></app-loader>
+}
+
+<app-navbar></app-navbar>
 
 <div class="container mt-4">
-  <app-loader *ngIf="!(ready$ | async)"></app-loader>
-  <router-outlet *ngIf="ready$ | async"></router-outlet>
+  <router-outlet></router-outlet>
 </div>
