@@ -33,6 +33,14 @@
             </a>
             </li>
 
+            <li class="nav-item" *ngIf="auth.isAdmin()">
+                <a class="nav-link"
+                    routerLink="/admin/users"
+                    routerLinkActive="active">
+                    Admin Panel
+                </a>
+            </li>
+
             <li class="nav-item" *ngIf="auth.isLoggedIn()">
             <button class="btn btn-outline-light btn-sm px-3 py-2"
                     (click)="auth.logout()">

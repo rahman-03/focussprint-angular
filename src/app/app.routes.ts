@@ -11,6 +11,9 @@ import { ProfileComponent } from './components/user/profile/profile.component';
 import { UpdateProfileComponent } from './components/user/update-profile/update-profile.component';
 import { ChangePasswordComponent } from './components/user/change-password/change-password.component';
 import { DeleteAllTodosComponent } from './components/todo/delete-all-todos/delete-all-todos.component';
+import { AdminEditUserComponent } from './components/admin/admin-edit-user/admin-edit-user.component';
+import { AdminUsersComponent } from './components/admin/admin-users/admin-users.component';
+import { adminGuard } from './guards/admin.guard';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -24,5 +27,10 @@ export const routes: Routes = [
     { path: 'todos/add', component: AddTodoComponent, canActivate: [authGuard] },
     { path: 'todos/:id', component: EditTodoComponent, canActivate: [authGuard] },
     { path: 'home', component: HomeComponent, canActivate: [authGuard] },
+
+    // admin
+    { path: 'admin/users', component: AdminUsersComponent, canActivate: [authGuard,adminGuard] },
+    { path: 'admin/users/:id', component: AdminEditUserComponent, canActivate: [authGuard,adminGuard] },
+
     {path:'**', component:PageNotFoundComponent}
 ];

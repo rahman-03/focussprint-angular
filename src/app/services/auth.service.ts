@@ -2,7 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import {jwtDecode} from 'jwt-decode';
+
 import { environment } from '../../environments/environment';
+
+export interface TokenPayload {
+  sub: string;
+  role: string;
+  exp: number;
+}
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -34,8 +42,28 @@ export class AuthService {
         return this.cookie.get('access_token');
     }
 
+    
+    getUserToken(): TokenPayload | null {
+        const token = this.getToken();
+        if (!token) return null;
+        
+        const decoded = jwtDecode<TokenPayload>(token);
+        return decoded;
+    }
+
+    isAdmin(): boolean {
+        return this.getUserToken()?.role === 'admin';
+    }
+
+    isTokenExpired():boolean{
+        const exp_decoded = this.getUserToken()?.exp;
+        if(!exp_decoded) return true;
+        const now = Math.floor(Date.now()/1000);
+        return exp_decoded < now
+    }
+    
     isLoggedIn(): boolean {
-        return this.cookie.check('access_token');
+        return this.cookie.check('access_token') && !this.isTokenExpired();
     }
 
     logout() {

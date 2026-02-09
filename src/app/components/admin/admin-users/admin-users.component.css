@@ -1,0 +1,18 @@
+.bg-soft {
+    background-color: #88c993;
+    color: #f9fbf9;
+    border: none;
+    padding: 10px 0;
+}
+  
+.bg-soft-opp {
+    background-color: #c99393;
+    color: #f9fafb;
+    border: none;
+    padding: 10px 0;
+}
+  
+.btn-dark {
+    background-color: #575757;
+    color: #f9fafb;
+}

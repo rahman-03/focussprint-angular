@@ -1,0 +1,77 @@
+.btn-soft {
+    background-color: #374151;
+    color: #f9fafb;
+    border: none;
+    padding: 10px 0;
+}
+
+.btn-soft:hover {
+    background-color: #1f2933;
+}
+
+.btn-soft-outline {
+    background-color: transparent;
+    color: #374151;
+    border: 1px solid #d1d5db;
+    padding: 10px 0;
+}
+
+.btn-soft-outline:hover {
+    background-color: #d1d1d1;
+}
+
+/* Card container */
+.soft-card {
+    width: 550px;
+    border-radius: 14px;
+    border: none;
+    background-color: #fdfdfd;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+/* Labels */
+.form-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #6b7280;
+}
+
+/* Inputs */
+.form-control {
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+}
+
+.form-control:focus {
+    border-color: #9ca3af;
+    box-shadow: none;
+}
+
+/* Muted primary button */
+.btn-muted {
+    background-color: #374151;
+    color: #f9fafb;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+}
+
+.btn-muted:hover {
+    background-color: #1f2933;
+}
+
+.custom-switch:checked {
+    background-color: #1f2937;
+    border-color: #1f2937;
+}
+
+.custom-switch {
+    background-color: #e5e7eb;
+    border-color: #d1d5db;
+}
+
+.custom-switch:focus,.custom-switch:active {
+    box-shadow: none;
+    outline: none;
+}
