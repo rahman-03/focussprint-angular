@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AdminService } from '../../../services/admin.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-admin-users',
@@ -10,17 +11,20 @@ import { CommonModule } from '@angular/common';
   styleUrl: './admin-users.component.css'
 })
 export class AdminUsersComponent implements OnInit {
-  users: any[] = [];
-
   constructor(
     private adminService: AdminService,
+    private authService: AuthService,
     private router: Router
   ) {}
 
+  users: any[] = [];
+  curr_user?: number;
+
   ngOnInit() {
+    this.curr_user = this.authService.getUserToken()?.id;
     this.adminService.getUsers().subscribe({
       next: res => {
-        this.users = res;
+        this.users = res.filter((i)=>i.id!==this.curr_user);
       },
       error: (err) => alert(err.error?.detail || 'Failed to load user detail')
     });
