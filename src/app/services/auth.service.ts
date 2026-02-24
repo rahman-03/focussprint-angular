@@ -7,6 +7,7 @@ import {jwtDecode} from 'jwt-decode';
 import { environment } from '../../environments/environment';
 
 export interface TokenPayload {
+  id: number;
   sub: string;
   role: string;
   exp: number;
@@ -46,7 +47,6 @@ export class AuthService {
     getUserToken(): TokenPayload | null {
         const token = this.getToken();
         if (!token) return null;
-        
         const decoded = jwtDecode<TokenPayload>(token);
         return decoded;
     }
@@ -63,7 +63,7 @@ export class AuthService {
     }
     
     isLoggedIn(): boolean {
-        return this.cookie.check('access_token') && !this.isTokenExpired();
+        return this.cookie.check('access_token');
     }
 
     logout() {

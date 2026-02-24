@@ -6,49 +6,50 @@
         FOCUSSPRINT
         </a>
 
+        @if (auth.isLoggedIn()) {
         <!-- Mobile toggle -->
-        <button class="navbar-toggler" type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-        </button>
+            <button class="navbar-toggler" type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+            </button>
 
         <!-- Nav items -->
-        <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto align-items-center gap-3">
-
-            <li class="nav-item" *ngIf="auth.isLoggedIn()">
-            <a class="nav-link"
-                routerLink="/home"
-                routerLinkActive="active">
-                Home
-            </a>
-            </li>
-
-            <li class="nav-item" *ngIf="auth.isLoggedIn()">
-            <a class="nav-link"
-                routerLink="/profile"
-                routerLinkActive="active">
-                Profile
-            </a>
-            </li>
-
-            <li class="nav-item" *ngIf="auth.isAdmin()">
+            <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto align-items-center gap-3">
+                <li class="nav-item">
                 <a class="nav-link"
-                    routerLink="/admin/users"
+                    routerLink="/home"
                     routerLinkActive="active">
-                    Admin Panel
+                    Home
                 </a>
-            </li>
-
-            <li class="nav-item" *ngIf="auth.isLoggedIn()">
-            <button class="btn btn-outline-light btn-sm px-3 py-2"
-                    (click)="auth.logout()">
-                Logout
-            </button>
-            </li>
-
-        </ul>
-        </div>
+                </li>
+    
+                <li class="nav-item">
+                <a class="nav-link"
+                    routerLink="/profile"
+                    routerLinkActive="active">
+                    Profile
+                </a>
+                </li>
+                @if (auth.isAdmin()) {
+                    <li class="nav-item">
+                        <a class="nav-link"
+                            routerLink="/admin/users"
+                            routerLinkActive="active">
+                            Admin Panel
+                        </a>
+                    </li>
+                }
+    
+                <li class="nav-item">
+                <button class="btn btn-outline-light btn-sm px-3 py-2"
+                        (click)="auth.logout()">
+                    Logout
+                </button>
+                </li>
+            </ul>
+            </div>
+        }
     </div>
 </nav>
