@@ -1,0 +1,9 @@
+.form-select {
+  padding: 2px 40px 2px 15px;
+  border-radius: 30px;
+  background-color: rgba(102, 101, 101, 0.205);
+  font-style:oblique;
+}
+option{
+    background-color: rgb(255, 255, 255);
+}

@@ -4,11 +4,11 @@
   <div class="d-flex gap-2">
     <select class="form-select form-select-sm w-auto" #sortSelect
             (change)="sortTodos(sortSelect.value)">
-      <option value="pending">Pending first</option>
-      <option value="title">Title (A → Z)</option>
-      <option value="completed">Completed first</option>
-      <option value="priority-desc">Priority (High → Low)</option>
-      <option value="priority-asc">Priority (Low → High)</option>
+        <option value="pending-pri-asc">Pending first</option>
+        <option value="completed-pri-desc">Completed first</option>
+        <option value="priority-desc">Priority (High → Low)</option>
+        <option value="priority-asc">Priority (Low → High)</option>
+        <option value="title">Title (A → Z)</option>
     </select>
 
     <a class="btn btn-dark btn-sm" routerLink="/todos/add">+ Add</a>

@@ -11,43 +11,43 @@ import { CommonModule } from '@angular/common';
 })
 export class TodoListComponent implements OnInit {
   todos: any[] = [];
-  originalTodos: any[] = [];
-
   constructor(private todo: TodoService) {}
 
   ngOnInit() {
     this.todo.getTodos().subscribe({
       next: (res: any[]) => {
         this.todos = [...res];
-        this.originalTodos = [...res];
+        this.sortTodos('pending-pri-asc')
       },
       error: err => alert(err.error?.detail || 'Failed to load todos')
     });
   }
 
-  sortTodos(type: string) {
-    this.todos = [...this.originalTodos];
+  sortTodos(type: string ) :void {
+    this.todos.sort((a, b) => {
+        switch (type) {
+          case 'priority-desc':
+            return b.priority - a.priority;
+    
+          case 'priority-asc':
+            return a.priority - b.priority;
+    
+          case 'completed-pri-desc':
+            if(a.complete !== b.complete){
+                return  Number(b.complete) - Number(a.complete);
+            }
+            return a.priority - b.priority;
+    
+          case 'pending-pri-asc':
+            if(a.complete !== b.complete){
+                return  Number(a.complete) - Number(b.complete);
+            }
+            return b.priority - a.priority;
 
-    switch (type) {
-      case 'priority-desc':
-        this.todos.sort((a, b) => b.priority - a.priority);
-        break;
-
-      case 'priority-asc':
-        this.todos.sort((a, b) => a.priority - b.priority);
-        break;
-
-      case 'completed':
-        this.todos.sort((a, b) => Number(b.complete) - Number(a.complete));
-        break;
-
-      case 'pending':
-        this.todos.sort((a, b) => Number(a.complete) - Number(b.complete));
-        break;
-
-      case 'title':
-        this.todos.sort((a, b) => a.title.localeCompare(b.title));
-        break;
-    }
+    
+          case 'title':
+            return a.title.localeCompare(b.title);
+        }
+    });
   }
 }
