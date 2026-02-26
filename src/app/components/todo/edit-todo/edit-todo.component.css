@@ -20,6 +20,11 @@
   background-color: #f3f4f6;
 }
 
+.btn-secondary:hover{
+    background-color: rgba(138, 0, 0, 0.678);
+    border-color: rgb(247, 247, 247);
+}
+
 /* Card container */
 .soft-card {
   width: 460px;
