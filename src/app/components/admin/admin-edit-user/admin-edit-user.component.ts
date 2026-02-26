@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { AdminService } from '../../../services/admin.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-admin-edit-user',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule,RouterLink],
   templateUrl: './admin-edit-user.component.html',
   styleUrl: './admin-edit-user.component.css'
 })
@@ -39,7 +39,19 @@ export class AdminEditUserComponent implements OnInit {
         });
     }
 
-    save() {
+    deleteUser() {
+        if (!confirm('Are you sure you want to delete this user?')) return;
+
+        this.adminService.deleteUser(this.id).subscribe({
+            next: () => {
+                this.router.navigate(['/admin/users']);
+                },
+                error: err => alert(err.error?.detail || 'Failed to delete user')
+            }
+        );
+    }
+
+    updateUser() {
         if (this.form.invalid) return;
 
         this.adminService.updateUser(this.id, this.form.value).subscribe(() => {

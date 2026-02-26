@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-center mt-5">
     <div class="card soft-card p-4">
         <h4 class="text-center fw-bold mb-4">Edit User</h4>
-        <form  [formGroup]="form" (ngSubmit)="save()" >
+        <form  [formGroup]="form" (ngSubmit)="updateUser()" >
 
             <div class="mb-3">
                 <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
@@ -45,6 +45,14 @@
             <div class="d-flex gap-2">
                 <button class="btn btn-soft flex-fill" [disabled]="form.invalid" type="submit">
                 Update User
+                </button>
+
+                <button
+                type="button"
+                class="btn btn-secondary flex-fill"
+                (click)="deleteUser()"
+                >
+                Delete
                 </button>
 
                 <button
