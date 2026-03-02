@@ -15,7 +15,7 @@ export interface TokenPayload {
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-    private API = environment.apiBaseUrl;
+    private API = environment.apiBaseUrl + '/auth';
 
     constructor(
         private http: HttpClient,
@@ -25,10 +25,14 @@ export class AuthService {
 
     login(data: any) {
         return this.http.post<any>(
-        `${this.API}/auth/token`,
+        `${this.API}/token`,
         new URLSearchParams(data).toString(),
-        { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }
+        { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } ,withCredentials:true }
         );
+    }
+
+    refreshToken() {
+        return this.http.post<any>(`${this.API}/refresh`,{},{ withCredentials: true });
     }
 
     saveToken(token: string) {
@@ -55,21 +59,31 @@ export class AuthService {
         return this.getUserToken()?.role === 'admin';
     }
 
-    isTokenExpired():boolean{
+    isTokenExpiringSoon():boolean{
         const exp_decoded = this.getUserToken()?.exp;
         if(!exp_decoded) return true;
-        const now = Math.floor(Date.now()/1000);
-        return exp_decoded < now
+        const exp = exp_decoded * 1000;
+        const now = Date.now();
+        return exp - now < 10000;
     }
     
     isLoggedIn(): boolean {
         return this.cookie.check('access_token');
     }
 
-    logout() {
-        this.cookie.deleteAll('/');
+  logout(): void {
+  this.http.post(`${this.API}/logout`, {}, { withCredentials: true })
+    .subscribe({
+      next: () => {
+        this.cookie.delete('access_token', '/');
         this.router.navigate(['/login']);
-    }
+      },
+      error: () => {
+        this.cookie.delete('access_token', '/');
+        this.router.navigate(['/login']);
+      }
+    });
+}
 
     register(payload: {
             email: string;
@@ -80,6 +94,6 @@ export class AuthService {
             phone_no: string;
             password: string;
         }) {
-            return this.http.post(`${this.API}/auth/`, payload);
+            return this.http.post(`${this.API}/`, payload);
         }
 }

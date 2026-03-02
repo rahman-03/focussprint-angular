@@ -9,11 +9,5 @@ export const authGuard: CanActivateFn = ()=> {
         router.navigate(['/login']);
         return false
     }
-
-    if (auth.isTokenExpired()) {
-        alert('Session Expired, Please Login again');
-        auth.logout();
-        return false
-    }
     return true;
 };
