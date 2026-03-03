@@ -21,13 +21,13 @@ export class AdminEditUserComponent implements OnInit {
     
     ngOnInit() {
         this.form = this.fb.group({
-            email: [''],
+            email: [{ value: '', disabled: true }],
             username: [''],
-            firstname: [''],
-            lastname: [''],
+            firstname: [{ value: '', disabled: true }],
+            lastname: [{ value: '', disabled: true }],
             role: [''],
             is_active: [true],
-            phone_no: ['']
+            phone_no: [{ value: '', disabled: true }]
         });
         this.id = Number(this.route.snapshot.paramMap.get('id'));
 
