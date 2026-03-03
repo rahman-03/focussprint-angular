@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { AuthService } from '../../services/auth.service';
+import { UserService } from '../../services/user.service';
 import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
@@ -16,13 +16,12 @@ export class RegisterComponent {
   username = '';
   firstname = '';
   lastname = '';
-//   role = 'user';
   phone_no = '';
   password = '';
   password2 = '';
 
   constructor(
-    private auth: AuthService,
+    private user: UserService,
     private router: Router
   ) {}
 
@@ -37,11 +36,10 @@ export class RegisterComponent {
       username: this.username,
       firstname: this.firstname,
       lastname: this.lastname,
-      role: "user",
       phone_no: this.phone_no,
       password: this.password
     };
-    this.auth.register(payload).subscribe({        
+    this.user.register(payload).subscribe({        
         next: () => {
             alert('Registration successful! Please login.');
             this.router.navigate(['/login']);

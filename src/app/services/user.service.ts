@@ -9,6 +9,17 @@ export class UserService {
 
     constructor(private http: HttpClient) {}
 
+    register(payload: {
+            email: string;
+            username: string;
+            firstname: string;
+            lastname: string;
+            phone_no: string;
+            password: string;
+        }) {
+            return this.http.post(`${this.API}/create_user`, payload);
+        }
+
     getProfile(): Observable<any> {
         return this.http.get(`${this.API}/`);
     }

@@ -25,7 +25,7 @@ export class AuthService {
 
     login(data: any) {
         return this.http.post<any>(
-        `${this.API}/token`,
+        `${this.API}/login`,
         new URLSearchParams(data).toString(),
         { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } ,withCredentials:true }
         );
@@ -84,16 +84,4 @@ export class AuthService {
       }
     });
 }
-
-    register(payload: {
-            email: string;
-            username: string;
-            firstname: string;
-            lastname: string;
-            role: string;
-            phone_no: string;
-            password: string;
-        }) {
-            return this.http.post(`${this.API}/`, payload);
-        }
 }
