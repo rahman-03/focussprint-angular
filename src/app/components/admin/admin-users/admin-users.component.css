@@ -18,3 +18,11 @@
     background-color: #fdfdfd;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
 }
+
+.user-name {
+  word-break: break-word;
+}
+
+.text-truncate-container {
+  min-width: 0;
+}
