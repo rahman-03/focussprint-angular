@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiBaseUrl: 'https://focussprint.onrender.com'
+  apiBaseUrl: 'https://api.focussprint.app'
 };
