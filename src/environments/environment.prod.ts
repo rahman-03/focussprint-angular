@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiBaseUrl: 'https://api.focussprint.in'
+  apiBaseUrl: 'https://api.focussprint.app'
 };
