@@ -21,7 +21,7 @@ export class UserService {
         }
 
     getProfile(): Observable<any> {
-        return this.http.get(`${this.API}/`);
+        return this.http.get(`${this.API}`);
     }
 
     updateProfile(data: any): Observable<any> {

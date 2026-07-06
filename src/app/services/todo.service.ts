@@ -10,25 +10,25 @@ export class TodoService {
     constructor(private http: HttpClient) {}
 
     getTodos(): Observable<any>  {
-        return this.http.get(`${this.API}/`);
+        return this.http.get(`${this.API}`);
     }
 
     
     getTodoById(id: string): Observable<any>  {
-        return this.http.get(`${this.API}/todo/${id}`);
+        return this.http.get(`${this.API}/${id}`);
     }
 
 
     addTodo(payload: any): Observable<any>  {
-        return this.http.post(`${this.API}/todo`, payload);
+        return this.http.post(`${this.API}`, payload);
     }
 
     updateTodo(id: string, payload: any): Observable<any>  {
-        return this.http.put(`${this.API}/todo/${id}`, payload);
+        return this.http.put(`${this.API}/${id}`, payload);
     }
 
     deleteTodo(id: string): Observable<any>  {
-        return this.http.delete(`${this.API}/todo/${id}`);
+        return this.http.delete(`${this.API}/${id}`);
     }
 
     deleteAllTodos(password: string) {
