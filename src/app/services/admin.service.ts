@@ -15,7 +15,7 @@ export class AdminService {
     }
 
     getUserById(id: number) {
-        return this.http.get<any>(`${this.API}/users/${id}`);
+        return this.http.get<any>(`${this.API}/user/${id}`);
     }
 
     updateUser(id: number, payload: any) {
